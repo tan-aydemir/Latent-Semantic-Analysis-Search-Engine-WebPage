@@ -20,7 +20,8 @@ jobs:
           python-version: '3.8' # Change this to your required Python version
 
       - name: Install dependencies
-        run: make install
+        run: |
+          pip install -r requirements.txt # Directly install dependencies without creating a virtual environment
 
       - name: Run application
         run: |
