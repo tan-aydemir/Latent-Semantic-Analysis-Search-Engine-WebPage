@@ -1,0 +1,27 @@
+name: Python Application
+
+on:
+  push:
+    branches: [ main ] # Change this to your default branch if necessary
+  pull_request:
+    branches: [ main ] # Change this to your default branch if necessary
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8' # Change this to your required Python version
+
+      - name: Install dependencies
+        run: make install
+
+      - name: Run application
+        run: |
+          make run & sleep 5
