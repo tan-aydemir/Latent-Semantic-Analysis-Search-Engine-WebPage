@@ -32,11 +32,32 @@ function displayResults(data) {
     }
 }
 
-function displayChart(data) {
-    // Input: data (object) - contains the following keys:
-    //        - documents (list) - list of documents
-    //        - indices (list) - list of indices   
-    //        - similarities (list) - list of similarities
-    // TODO: Implement function to display chart here
-    //       There is a canvas element in the HTML file with the id 'similarity-chart'
-}
+    function displayChart(data) {
+        // Input: data (object) - contains the following keys:
+        //        - documents (list) - list of documents
+        //        - indices (list) - list of indices   
+        //        - similarities (list) - list of similarities
+        // TODO: Implement function to display chart here
+        //       There is a canvas element in the HTML file with the id 'similarity-chart'
+        let ctx = document.getElementById('similarity-chart').getContext('2d');
+        let chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.indices.map(i => `Doc ${i}`),
+                datasets: [{
+                    label: 'Cosine Similarity',
+                    data: data.similarities,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
