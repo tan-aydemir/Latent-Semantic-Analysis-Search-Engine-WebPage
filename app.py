@@ -50,12 +50,6 @@ def search_engine(query):
 def index():
     return render_template('index.html')
 
-# @app.route('/search', methods=['POST'])
-# def search():
-#     query = request.form['query']
-#     documents, similarities, indices = search_engine(query)
-#     return jsonify({'documents': documents, 'similarities': similarities, 'indices': indices}) 
-
 @app.route('/search', methods=['POST'])
 def search():
     query = request.form['query']
@@ -64,6 +58,11 @@ def search():
     # Numpy arrays --> lists
     similarities = similarities.tolist() if isinstance(similarities, np.ndarray) else similarities
     indices = indices.tolist() if isinstance(indices, np.ndarray) else indices
+
+    # print("Printing jsonify")
+    # print("Documents =", documents)
+    # print("Similarities =", similarities)
+    # print("Indices = ", indices)
 
     return jsonify({'documents': documents, 'similarities': similarities, 'indices': indices})
 

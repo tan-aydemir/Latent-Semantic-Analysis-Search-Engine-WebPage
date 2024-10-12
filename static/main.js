@@ -5,6 +5,7 @@ document.getElementById('search-form').addEventListener('submit', function (even
     let resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = '';
 
+
     fetch('/search', {
         method: 'POST',
         headers: {
@@ -16,7 +17,6 @@ document.getElementById('search-form').addEventListener('submit', function (even
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         displayResults(data);
         displayChart(data);
     });
@@ -31,7 +31,6 @@ function displayResults(data) {
         resultsDiv.appendChild(docDiv);
     }
 }
-
     function displayChart(data) {
         // Input: data (object) - contains the following keys:
         //        - documents (list) - list of documents
@@ -40,10 +39,15 @@ function displayResults(data) {
         // TODO: Implement function to display chart here
         //       There is a canvas element in the HTML file with the id 'similarity-chart'
         let ctx = document.getElementById('similarity-chart').getContext('2d');
-        let chart = new Chart(ctx, {
+
+        if (window.similarityChart) {
+            window.similarityChart.destroy();
+        }
+        console.log("Does it ever come here");
+        window.similarityChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: data.indices.map(i => `Doc ${i}`),
+                labels: data.indices.map(i => `Doc ${i + 1}`), // Adjust for 1-based index
                 datasets: [{
                     label: 'Cosine Similarity',
                     data: data.similarities,
@@ -55,9 +59,12 @@ function displayResults(data) {
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        max: 1 // Adjust scale to fit similarity scores
                     }
                 }
             }
         });
+
+        console.log("Chart displayed successfully!");  // Print confirmation
     }

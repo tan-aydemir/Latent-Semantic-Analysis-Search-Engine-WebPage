@@ -9,63 +9,15 @@
 <body>
     <h1>Latent Semantic Analysis (LSA) Search Engine</h1>
     <form id="search-form">
-        <input type="text" id="query" placeholder="Enter search query" required>
+        <input type="text" id="query" placeholder="Enter search question" required>
         <button type="submit">Search</button>
     </form>
 
     <div id="results"></div>
     <canvas id="similarity-chart"></canvas>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/main.js"></script>
+    
 </body>
 </html>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chart.js Test</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-
-<canvas id="similarity-chart" width="400" height="200"></canvas>
-
-<script>
-    function displayChart(data) {
-        let ctx = document.getElementById('similarity-chart').getContext('2d');
-        let chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: data.indices.map(i => `Doc ${i}`),
-                datasets: [{
-                    label: 'Cosine Similarity',
-                    data: data.similarities,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
-
-    // Sample data for testing
-    let data = {
-        documents: ["Doc A", "Doc B", "Doc C", "Doc D", "Doc E"],
-        indices: [0, 1, 2, 3, 4],
-        similarities: [0.95, 0.89, 0.82, 0.77, 0.70]
-    };
-
-    displayChart(data);
-</script>
-
-</body>
-</html> -->
