@@ -20,14 +20,6 @@ This project implements a basic search engine using **Latent Semantic Analysis (
 4. **Efficiency**:
    - Dimensionality reduction using LSA optimizes performance for large datasets.
 
----
-
-## Demo
-
-Visit the [Demo Video](#) to see the project in action.
-
----
-
 ## Technologies Used
 
 - **Backend**: Python, Flask
